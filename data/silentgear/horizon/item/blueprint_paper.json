@@ -1,0 +1,6 @@
+{
+  "template": "minecraft:paper",
+  "components": {
+    "minecraft:item_name": { "translate": "item.silentgear.blueprint_paper" }
+  }
+}

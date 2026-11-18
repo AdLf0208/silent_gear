@@ -1,0 +1,31 @@
+# Silent Gear for Horizon — one flat SDK package (mod API 0.2).
+#
+# Slice 1 of the port: one gear, `silentgear:pickaxe`, assembled from parts whose material
+# stats fold into a `silentgear:gear` component the stack carries. This package ships the
+# carried items, models, textures, lang, recipes, tags and creative tab, and the native code
+# that assembles them, reads the stat block back and draws its tooltip line.
+# Ported from Silent Gear 4.2.1.1 (MIT); local-only until the maintainer approves publishing
+# (ARCHITECTURE.md §8).
+id = "silentgear"
+name = "Silent Gear"
+# The port's own version, not the original mod's 4.2.1.1: a resubmission is always a new
+# version (the retired .hnmod bundle was 0.1.0).
+version = "0.2.0"
+description = """Assemble Silent Gear's pickaxe from its blueprint, a pickaxe head and a rod: the parts' material stats fold into one stat block (durability, harvest speed, enchantment value, harvest tier) that the assembled stack carries as a component, `/silentgear stats` reads back, and the item's tooltip shows. This slice has one gear and the iron stat block only: the pin reads tool stats from the item, not from the stack, so assembly refuses a combination whose folded stats the carried item cannot honour. The other tools and armour, traits, grading, salvage, compound parts and the blueprint book are not ported yet."""
+authors = ["SilentChaos512 (upstream)", "Horizon native mod contributors"]
+# A native mod: Rust in src/, compiled by the launcher against the game build [native] pins,
+# beside data/ and assets/. The id is the resource namespace and the only identity: Cargo's
+# package name and version are not the mod's.
+api = "0.2"
+# "both" is the installation side, not the hook's: the tooltip line is a client hook and the
+# assembly command runs on the integrated or dedicated server, so both installations load it.
+side = "both"
+# The one shared value every manifest carries ("May add blocks, items, mob effects and entity
+# types"). This package declares items and a custom item component; the field is required by
+# the schema either way.
+capabilities = ["registries"]
+
+[native]
+game = "26.3"
+horizon = "0b14f8acfd97fa2c750e42795249dcc981178ca4"
+mixins = "e59da9094f0c2fdda6c627fe9eff22dec6a906f0"
